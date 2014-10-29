@@ -1,3 +1,12 @@
+/////////////////////////////////////////////////////////////////////////
+// Program Name: EfficientVMPlacement.java                             //
+// Language    : JAVA                                                  //
+// Platform    : Toshiba Satellite Windows 8                           //
+// Application : Efficient Fit Algorithm for Virtual Machine Placement //
+// Author      : Ganesh Thiagarajan,                                   //
+//               ganesh_vjy@yahoo.com                                  //
+/////////////////////////////////////////////////////////////////////////
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
