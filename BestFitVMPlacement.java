@@ -1,3 +1,12 @@
+///////////////////////////////////////////////////////////////////
+// Program Name: BestFitVMPlacement.java                         //
+// Language    : JAVA                                            //
+// Platform    : Toshiba Satellite Windows 8                     //
+// Application : Best Fit Algorithm for Virtual Machine Placement//
+// Author      : Ganesh Thiagarajan,                             //
+//               ganesh_vjy@yahoo.com                            //
+///////////////////////////////////////////////////////////////////
+
 import java.util.Random;
 import java.util.Vector;
 import java.io.BufferedReader;
