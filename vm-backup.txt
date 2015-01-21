@@ -1,0 +1,46 @@
+public static Map<String, PerfCounterInfo> getPerfCounters(PerformanceManager pm) throws Exception 
+	{
+		Map<String, PerfCounterInfo> result = new HashMap<String, PerfCounterInfo>();
+		PerfCounterInfo[] counters = pm.getPerfCounter();
+		if (counters != null)
+		{
+			for (PerfCounterInfo counter : counters) 
+			{
+				String key = counter.getGroupInfo().getKey() + "." + counter.getNameInfo().getKey() + "." + counter.getRollupType().toString();
+				result.put(key, counter);
+			}
+		}
+		return result;
+	}
+	
+	public static void main(String  args)throws Exception{
+	String url ="https://128.230.96.117/sdk";
+	    String login = "AD\\gthiagar";
+	    String password = "*******";
+	    
+	    ServiceInstance si = new ServiceInstance(new URL(url),login,password,true);
+	    ManagedObjectReference me=si.getMOR();
+	    PerformanceManager pm = si.getPerformanceManager();
+	    Map<String, PerfCounterInfo> counters = getPerfCounters(pm);
+	     
+	    PerfMetricId metric0 = new PerfMetricId();
+	    
+	    metric0.setCounterId(counters.get("cpu.usage.average").getKey());
+	    metric0.setInstance("");
+	    
+	    PerfQuerySpec qSpec = new PerfQuerySpec();
+	    qSpec.setEntity(me); 
+	    qSpec.setMetricId(new PerfMetricId[]{metric0});
+	    
+	    PerfEntityMetricBase[] pembs = pm.queryPerf(new PerfQuerySpec[]{qSpec});
+	    System.out.println("aa");
+	    for (PerfEntityMetricBase pemb : pembs) {
+	    	PerfEntityMetric pem = (PerfEntityMetric) pemb;
+	    	for (PerfMetricSeries series : pem.getValue()) {
+	    		PerfMetricIntSeries ints = (PerfMetricIntSeries) series;
+	    		for (int cnt=0 ; cnt<ints.getValue().length ;++cnt) {
+	    			System.out.println("sample " + ints.getValue());
+	    		} 
+	    	} 
+	    }
+	}
